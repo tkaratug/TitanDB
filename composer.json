@@ -1,0 +1,22 @@
+{
+    "name": "tkaratug/titan-db",
+    "type": "library",
+    "description": "Simple and useful query builder for PHP.",
+    "keywords": ["php","pdo","mysql","sql","query","builder"],
+    "homepage": "https://github.com/tkaratug/TitanDB",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Turan Karatuğ",
+            "email": "info@turankaratug.com",
+            "homepage": "http://turankaratug.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "classmap": ["src/titandb.php"]
+    }
+}
