@@ -84,7 +84,7 @@ class TitanDB
 		}
 		catch(\PDOException $e)
 		{
-			die('Cannot the connect to Database with PDO.<br /><br />'.$e->getMessage());
+			die('Cannot connect to Database with PDO.<br /><br />'.$e->getMessage());
 		}
 
 		return $this->pdo;
