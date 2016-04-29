@@ -1,72 +1,75 @@
 <?php
 /**
- * Titan SQL Query Builder Library
+ * Titan SQL query builder library for PHP
  *
- * @author 		Turan Karatuğ - <tkaratug@hotmail.com.tr> - <www.turankaratug.com>
- * @version 	v1.0.0
- * @copyright	27.04.2016
- * @license		The MIT License (MIT) - Copyright (c) - http://opensource.org/licenses/MIT
+ * @author 		Turan Karatuğ - <tkaratug@hotmail.com.tr> - <http://turankaratug.com>
+ * @version 	1.0.0
+ * @copyright 	2016
+ * @license 	The MIT License (MIT) - Copyright (c) - http://opensource.org/licenses/MIT
  */
 
 class TitanDB
 {
+
 	// PDO instance
-	private $pdo 		= null;
+	private $pdo 			= null;
 
-	// SQL Query
-	private $sql 		= null;
+	// SQL query
+	private $sql 			= null;
 
-	// Last Statement
-	private $statement 	= null;
+	// Last statement
+	private $statement 		= null;
 
-	// Selected Columns
-	private $select 	= '*';
+	// Selected columns
+	private $select 		= '*';
 
-	// From Table
-	private $from 		= null;
+	// From table
+	private $from 			= null;
 
 	// Where string
-	private $where 		= [];
+	private $where 			= [];
 
 	// Join string
-	private $join 		= [];
+	private $join 			= [];
 
 	// OrderBy string
-	private $order_by 	= [];
+	private $order_by 		= [];
 
 	// Having string
-	private $having 	= [];
+	private $having 		= [];
 
-	// groupBy string
-	private $group_by 	= null;
+	// GroupBy string
+	private $group_by 		= null;
 
 	// Limit string
-	private $limit 		= null;
+	private $limit 			= null;
 
 	// Total row count
-	private $num_rows 	= 0;
+	private $num_rows 		= 0;
 
 	// Last insert id
-	private $insert_id 	= null;
+	private $insert_id		= null;
 
 	// Table prefix
-	private $prefix 	= null;
+	private $prefix 		= null;
 
 	// Error
-	private $error 		= null;
+	private $error 			= null;
 
 	function __construct($config = [])
 	{
-		$config['db_driver'] 		= (@$config['db_driver']) ? $config['db_driver'] : 'mysql';
-		$config['db_host']			= (@$config['db_host']) ? $config['db_host'] : 'localhost';
-		$config['db_charset']		= (@$config['db_charset']) ? $config['db_charset'] : 'utf8';
-		$config['db_collation']		= (@$config['db_collation']) ? $config['db_collation'] : 'utf8_general_ci';
-		$config['db_prefix']		= (@$config['db_prefix']) ? $config['db_prefix'] : '';
+		$config['db_driver']	= (@$config['db_driver']) ? $config['db_driver'] : 'mysql';
+		$config['db_host']		= (@$config['db_host']) ? $config['db_host'] : 'localhost';
+		$config['db_charset']	= (@$config['db_charset']) ? $config['db_charset'] : 'utf8';
+		$config['db_collation']	= (@$config['db_collation']) ? $config['db_collation'] : 'utf8_general_ci';
+		$config['db_prefix']	= (@$config['db_prefix']) ? $config['db_prefix'] : '';
 
+		// Setting prefix
 		$this->prefix = $config['db_prefix'];
 
 		$dsn = '';
 
+		// Setting connection string
 		if($config['db_driver'] == 'mysql' || $config['db_driver'] == 'pgsql' || $config['db_driver'] == '') {
 			$dsn = $config['db_driver'] . ':host=' . $config['db_host'] . ';dbname=' . $config['db_name'];
 		} elseif($config['db_driver'] == 'sqlite') {
@@ -75,6 +78,7 @@ class TitanDB
 			$dsn = 'oci:dbname=' . $config['db_host'] . '/' . $config['db_name'];
 		}
 
+		// Connecting to server
 		try
 		{
 			$this->pdo = new \PDO($dsn, $config['db_user'], $config['db_pass']);
@@ -346,7 +350,7 @@ class TitanDB
 	public function not_in($column, $list = [], $logic = 'AND')
 	{
 		$in_list = '';
-		
+
 		foreach($list as $element) {
 			$in_list .= $this->escape($element) . ',';
 		}
