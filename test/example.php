@@ -13,7 +13,7 @@ $config = [
 	'db_prefix'		=> ''
 ];
 
-$db = new TitanDB($config);
+$db = TitanDB::init($config);
 
 $db->where('active', 1);
 $records = $db->get('users')->results();

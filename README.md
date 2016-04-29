@@ -26,7 +26,7 @@ $config = [
 	'db_prefix'	 	=> ''
 ];
 
-$db = new TitanDB($config);
+$db = TitanDB::init($config);
 
 $records 	= $db->select('user_id, first_name, last_name, email')
 				 ->from('users')

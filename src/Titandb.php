@@ -56,6 +56,18 @@ class TitanDB
 	// Error
 	private $error 			= null;
 
+	// Instance
+	private static $instance;
+
+	public static function init($config = [])
+	{
+		if (null === static::$instance) {
+			static::$instance = new static($config);
+		}
+
+		return self::$instance;
+	}
+
 	function __construct($config = [])
 	{
 		$config['db_driver']	= (@$config['db_driver']) ? $config['db_driver'] : 'mysql';
@@ -85,7 +97,6 @@ class TitanDB
 			$this->pdo->exec("SET NAMES '" . $config['db_charset'] . "' COLLATE '" . $config['db_collation'] . "'");
 			$this->pdo->exec("SET CHARACTER SET '" . $config['db_charset'] . "'");
 			$this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
-			$this->pdo->setAttribute(\PDO::ATTR_PERSISTENT, true);
 		}
 		catch(\PDOException $e)
 		{
