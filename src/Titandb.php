@@ -59,6 +59,7 @@ class TitanDB
 	// Instance
 	private static $instance;
 
+	// Getting instance
 	public static function init($config = [])
 	{
 		if (null === static::$instance) {
@@ -749,6 +750,14 @@ class TitanDB
 
 		die($err);
 	}
+
+	private function __clone()
+    {
+    }
+
+    private function __wakeup()
+    {
+    }
 
 	function __destruct()
 	{
