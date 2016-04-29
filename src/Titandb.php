@@ -85,6 +85,7 @@ class TitanDB
 			$this->pdo->exec("SET NAMES '" . $config['db_charset'] . "' COLLATE '" . $config['db_collation'] . "'");
 			$this->pdo->exec("SET CHARACTER SET '" . $config['db_charset'] . "'");
 			$this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
+			$this->pdo->setAttribute(\PDO::ATTR_PERSISTENT, true);
 		}
 		catch(\PDOException $e)
 		{
