@@ -755,10 +755,6 @@ class TitanDB
     {
     }
 
-    private function __wakeup()
-    {
-    }
-
 	function __destruct()
 	{
 		$this->pdo = null;
