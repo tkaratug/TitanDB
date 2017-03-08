@@ -633,6 +633,10 @@ class TitanDB
 		{
 			$query 		= $this->pdo->prepare($this->sql);
 			$update 	= $query->execute($val);
+			
+			// Reset
+			$this->reset();
+			
 			return $update;
 		}
 		catch(\PDOException $e)
@@ -672,6 +676,10 @@ class TitanDB
 		{
 			$query 	= $this->pdo->prepare($this->sql);
 			$delete = $query->execute($val);
+			
+			// Reset
+			$this->reset();
+			
 			return $delete;
 		}
 		catch(\PDOException $e)
