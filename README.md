@@ -8,7 +8,7 @@ Simple query builder and PDO Class for PHP
 Run the following command directly.
 
 ```
-$ composer require tkaratug/titan-db:dev-master
+$ composer require tkaratug/titan-db
 ```
 
 ## Example
