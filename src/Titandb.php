@@ -578,6 +578,9 @@ class TitanDB
 
 		try
 		{
+			// Reset
+			$this->reset();
+			
 			$query 				= $this->pdo->prepare($this->sql);
 			$insert 			= $query->execute($val);
 			$this->insert_id 	= $this->pdo->lastInsertId();
