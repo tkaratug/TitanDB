@@ -460,6 +460,9 @@ class TitanDB
 	 */
 	public function row($fetch = 'object')
 	{
+		// Reset
+		$this->reset();
+		
 		// Run Query
 		$query = $this->pdo->query($this->sql);
 
@@ -469,9 +472,6 @@ class TitanDB
 				$row = $query->fetch(\PDO::FETCH_ASSOC);
 			else
 				$row = $query->fetch(\PDO::FETCH_OBJ);
-
-			// Reset
-			$this->reset();
 
 			return $row;
 		}
@@ -488,6 +488,9 @@ class TitanDB
 	 */
 	public function results($fetch = 'object')
 	{
+		// Reset
+		$this->reset();
+		
 		// Run Query
 		$query = $this->pdo->query($this->sql);
 
@@ -501,9 +504,6 @@ class TitanDB
 
 			// Row Count
 			$this->num_rows = $query->rowCount();
-
-			// Reset
-			$this->reset();
 
 			return $result;
 		}
@@ -631,11 +631,11 @@ class TitanDB
 
 		try
 		{
-			$query 		= $this->pdo->prepare($this->sql);
-			$update 	= $query->execute($val);
-			
 			// Reset
 			$this->reset();
+			
+			$query 		= $this->pdo->prepare($this->sql);
+			$update 	= $query->execute($val);
 			
 			return $update;
 		}
@@ -674,11 +674,11 @@ class TitanDB
 
 		try
 		{
-			$query 	= $this->pdo->prepare($this->sql);
-			$delete = $query->execute($val);
-			
 			// Reset
 			$this->reset();
+			
+			$query 	= $this->pdo->prepare($this->sql);
+			$delete = $query->execute($val);
 			
 			return $delete;
 		}
@@ -739,7 +739,6 @@ class TitanDB
 		$this->join 		= [];
 		$this->order_by 	= [];
 		$this->having 		= [];
-		$this->insert_id 	= null;
 		$this->error 		= null;
 		$this->from 		= null;
 		$this->group_by		= null;
