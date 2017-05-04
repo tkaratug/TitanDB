@@ -106,6 +106,16 @@ class TitanDB
 
 		return $this->pdo;
 	}
+	
+	/**
+	 * Instance of DB Connection
+	 * @return object
+	 */
+	public function pdo() {
+       	if ($this->pdo instanceof \PDO) {
+       		return $this->pdo;
+       	}
+ 	}
 
 	/**
 	 * Defines columns to select
