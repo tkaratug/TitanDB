@@ -111,7 +111,7 @@ class TitanDB
 	 * Instance of DB Connection
 	 * @return object
 	 */
-	public function pdo() {
+	public function usePdo() {
        	if ($this->pdo instanceof \PDO) {
        		return $this->pdo;
        	}
